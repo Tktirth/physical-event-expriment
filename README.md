@@ -12,7 +12,7 @@ OmniFlow is a high-fidelity, end-to-end event management ecosystem designed for 
 
 | Interface | URL | Description |
 | :--- | :--- | :--- |
-| **Admin Control Center** | [physical-event-expriment.vercel.app](https://physical-event-expriment.vercel.app/) | Global command center for crowd intelligence and infrastructure monitoring. |
+| **Admin Control Center** | [physical-event-expriment.vercel.app](https://dashboard-bqcgo2zaia-uc.a.run.app/) | Global command center for crowd intelligence and infrastructure monitoring. |
 | **Attendee Mobile Experience** | [attendee-613466328958.us-central1.run.app](https://attendee-613466328958.us-central1.run.app) | Premium mobile app with live match scores, weather, and smart routing. |
 | **Scalable API Gateway** | [api-gateway-613466328958.us-central1.run.app](https://api-gateway-613466328958.us-central1.run.app) | Centralized microservice hub orchestrating real-time telemetry. |
 
