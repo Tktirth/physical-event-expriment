@@ -54,9 +54,9 @@ app.get('/api/v1/venue/state', async (req, res) => {
         console.error("Failed to fetch venue state from routing-engine, falling back to mock", err);
         // Fallback mock data if services are down
         res.json({
-            event: "Championship Match (Offline Mode)",
+            event: "ICC World Cup Final (Offline Mode)",
             zones: [
-                { id: 'z1', name: 'South Gate', density: 50, status: 'NORMAL' }
+                { id: 'z1', name: 'Gate 1 (Corporate)', density: 50, status: 'NORMAL' }
             ],
             global_metrics: {
                 active_attendees: 0,

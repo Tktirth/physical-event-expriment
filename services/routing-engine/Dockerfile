@@ -1,16 +1,13 @@
-# Use Node.js Alpine
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
 RUN npm install --production
 
-# Copy source
-COPY index.js ./
+COPY . .
 
-# Standard Cloud Run port
-EXPOSE 8081
+ENV PORT=8081
+EXPOSE $PORT
 
 CMD ["node", "index.js"]

@@ -7,11 +7,10 @@
     "services/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev --workspace=@platform/dashboard\" \"npm run dev --workspace=@platform/attendee\" \"npm start --workspace=@platform/api-gateway\" \"npm start --workspace=@platform/routing-engine\" \"npm start --workspace=@platform/telemetry-ingestion\""
+    "dev": "concurrently \"npm run dev --workspace=dashboard\" \"npm run dev --workspace=attendee\" \"npm start --workspace=@platform/api-gateway\" \"npm start --workspace=@platform/routing-engine\" \"npm start --workspace=@platform/telemetry-ingestion\""
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "d3-color": "^3.1.0"
   }
 }
-
-

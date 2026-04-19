@@ -1,7 +1,5 @@
 {
-  "name": "omniflow-dashboard",
   "framework": "nextjs",
-  "rootDirectory": "apps/dashboard",
   "installCommand": "npm install",
   "buildCommand": "npm run build"
 }

@@ -74,7 +74,7 @@ fastify.get('/api/v1/routing', async (request, reply) => {
     }));
 
     return {
-        event: "Championship Match",
+        event: "ICC World Cup Final - Narendra Modi Stadium",
         optimalRoute: sequence,
         metadata: {
             avoidsCongestion: currentZoneDensities['ZN-CONCOURSE-A'] > 0.85 ? true : false,
@@ -83,26 +83,65 @@ fastify.get('/api/v1/routing', async (request, reply) => {
     };
 });
 
-// Mock Venue State for Dashboard
-fastify.get('/api/v1/venue/state', async (request, reply) => {
+// 3. Stateful Time-Series Simulation Logic (IST Synchronized)
+function getSimulatedVenueState() {
+    const now = new Date();
+    const istTime = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    const hour = istTime.getHours();
+    
+    // Simulation logic based on match-day cycle
+    // 16:00 - 18:00: Peak Inbound (Gates busy)
+    // 19:30 - 22:30: Peak Match (Seats full, concourses active)
+    // 23:00+: Outbound (Exit gates busy)
+    
+    let baseAttendees = 0;
+    let basePings = 0;
+    let multipliers = { z1: 1, z2: 1, z3: 1, z4: 1 };
+
+    if (hour >= 15 && hour < 19) {
+        // Pre-match arrival spike
+        baseAttendees = 45000 + (hour - 15) * 15000;
+        basePings = 8000 + Math.random() * 2000;
+        multipliers.z1 = 1.5; // Gate 1 busy
+        multipliers.z2 = 1.6; // Gate 2 busy
+    } else if (hour >= 19 && hour < 23) {
+        // Live match
+        baseAttendees = 120000 + Math.random() * 5000;
+        basePings = 15000 + Math.random() * 3000;
+        multipliers.z3 = 1.4; // Concourse active
+    } else {
+        // Late night / Early morning
+        baseAttendees = 500 + Math.random() * 200;
+        basePings = 100 + Math.random() * 50;
+    }
+
+    const randomVar = () => Math.random() * 10;
+
     return {
-        event: "Championship Match",
+        event: "ICC World Cup Final - Stadium Intel",
+        venue_id: "AMD-NMS-01",
+        timestamp: istTime.toISOString(),
         zones: [
-            { id: 'z1', name: 'South Gate', density: 85 + Math.floor(Math.random() * 10), status: 'CRITICAL' },
-            { id: 'z2', name: 'North Gate', density: 30 + Math.floor(Math.random() * 15), status: 'NORMAL' },
-            { id: 'z3', name: 'Concourse A (Food)', density: 60 + Math.floor(Math.random() * 10), status: 'WARNING' },
-            { id: 'z4', name: 'VIP Suite Level', density: 10 + Math.floor(Math.random() * 5), status: 'NORMAL' }
+            { id: 'z1', name: 'Gate 1 (Corporate)', density: Math.min(100, Math.floor((45 * multipliers.z1) + randomVar())), status: multipliers.z1 > 1.4 ? 'CRITICAL' : 'NORMAL' },
+            { id: 'z2', name: 'Gate 2 (General)', density: Math.min(100, Math.floor((35 * multipliers.z2) + randomVar())), status: multipliers.z2 > 1.4 ? 'CRITICAL' : 'NORMAL' },
+            { id: 'z3', name: 'Reliance Concourse', density: Math.min(100, Math.floor((55 * multipliers.z3) + randomVar())), status: multipliers.z3 > 1.3 ? 'WARNING' : 'NORMAL' },
+            { id: 'z4', name: 'Presidential Suite', density: Math.min(100, Math.floor((15 * multipliers.z4) + randomVar())), status: 'NORMAL' }
         ],
         global_metrics: {
-            active_attendees: 84000,
-            pings_per_sec: 14200 + Math.floor(Math.random() * 1000),
+            active_attendees: Math.floor(baseAttendees),
+            pings_per_sec: Math.floor(basePings),
+            decibel_level: 65 + (baseAttendees / 1000) * 0.3 + (Math.random() * 5),
             avg_wait_times: {
-                restrooms: 18, 
-                merch: 8,
+                restrooms: Math.floor(5 + (baseAttendees / 10000)), 
+                merch: Math.floor(2 + (baseAttendees / 12000)),
                 entry: Math.floor(Math.random() * 300)
             }
         }
     };
+}
+
+fastify.get('/api/v1/venue/state', async (request, reply) => {
+    return getSimulatedVenueState();
 });
 
 async function start() {
