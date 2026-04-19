@@ -1,0 +1,7 @@
+{
+  "name": "omniflow-attendee",
+  "framework": "nextjs",
+  "rootDirectory": "apps/attendee",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build"
+}
