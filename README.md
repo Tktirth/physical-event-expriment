@@ -2,7 +2,7 @@
 
 [![Production Backend](https://img.shields.io/badge/Production-Backend-0ea5e9?style=for-the-badge&logo=google-cloud)](https://api-gateway-613466328958.us-central1.run.app)
 [![Attendee App](https://img.shields.io/badge/Live-Attendee_App-14b8a6?style=for-the-badge&logo=vercel)](https://attendee-613466328958.us-central1.run.app)
-[![Admin Dashboard](https://img.shields.io/badge/Admin-Dashboard-8b5cf6?style=for-the-badge&logo=nextdotjs)](https://physical-event-expriment.vercel.app/)
+[![Admin Dashboard](https://img.shields.io/badge/Admin-Dashboard-8b5cf6?style=for-the-badge&logo=nextdotjs)](https://dashboard-bqcgo2zaia-uc.a.run.app/)
 
 OmniFlow is a high-fidelity, end-to-end event management ecosystem designed for massive venues (100,000+ attendees). It eliminates friction in the attendee journey through real-time telemetry, predictive crowd analytics, and a photorealistic spatial digital twin.
 
@@ -12,7 +12,7 @@ OmniFlow is a high-fidelity, end-to-end event management ecosystem designed for 
 
 | Interface | URL | Description |
 | :--- | :--- | :--- |
-| **Admin Control Center** | [physical-event-expriment.vercel.app](https://dashboard-bqcgo2zaia-uc.a.run.app/) | Global command center for crowd intelligence and infrastructure monitoring. |
+| **Admin Control Center** | [physical-event-expriment.vercel.app](https://dashboard-bqcgo2zaia-uc.a.run.app/)| Global command center for crowd intelligence and infrastructure monitoring. |
 | **Attendee Mobile Experience** | [attendee-613466328958.us-central1.run.app](https://attendee-613466328958.us-central1.run.app) | Premium mobile app with live match scores, weather, and smart routing. |
 | **Scalable API Gateway** | [api-gateway-613466328958.us-central1.run.app](https://api-gateway-613466328958.us-central1.run.app) | Centralized microservice hub orchestrating real-time telemetry. |
 
